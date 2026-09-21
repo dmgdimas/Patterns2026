@@ -1,13 +1,16 @@
 from abc import ABC, abstractmethod
 import uuid
 
-class Employee(ABC):
+class abstract_class(ABC):
     """
     Абстрактный базовый класс для сотрудника
     Нужен для фиксации ответственного лица при операциях учета (согласно п. 5.3 ТЗ)
     """
     
     def __init__(self, name: str):
+        """
+        Инициализирует экземпляр класса
+        """
         # Генерируем уникальный ID с помощью стандартного модуля uuid
         self.__id = str(uuid.uuid4())
         self.name = name  # Используем сеттер для проверки имени
