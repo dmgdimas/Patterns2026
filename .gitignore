@@ -1,0 +1,27 @@
+# Байт-код и кэш Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Каталоги для дистрибутивов и сборок
+build/
+dist/
+*.egg-info/
+
+# Виртуальные окружения
+venv/
+.env
+.venv
+
+# Логи и отладочная информация
+*.log
+
+# Результаты тестов и coverage
+.cache/
+.coverage
+htmlcov/
+
+# Настройки редакторов
+.idea/
+.vscode/
