@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 import uuid
+from Src.Core.exceptions import argument_exceptions
 
 class abstract_class(ABC):
     """
@@ -7,13 +8,16 @@ class abstract_class(ABC):
     Нужен для фиксации ответственного лица при операциях учета (согласно п. 5.3 ТЗ)
     """
     
-    def __init__(self, name: str):
+    def __init__(self):
         """
         Инициализирует экземпляр класса
         """
         # Генерируем уникальный ID с помощью стандартного модуля uuid
         self.__id = str(uuid.uuid4())
-        self.name = name  # Используем сеттер для проверки имени
+
+    def __eq__(self, other):
+        return self.id == other.id
+
 
     @property
     def id(self) -> str:
@@ -29,14 +33,13 @@ class abstract_class(ABC):
     def name(self, value: str):
         """Устанавливает имя, проверяя, что оно не пустое."""
         if not value or not str(value).strip():
-            raise ValueError("Имя сотрудника не может быть пустым")
+            raise argument_exceptions("value","Имя сотрудника не может быть пустым")
         self.__name = str(value).strip()
 
-    @abstractmethod
-    def get_role(self) -> str:
-        """
-        Абстрактный метод. 
-        Любой наследник этого класса обязан реализовать его и вернуть свою роль 
-        (например: "Производство", "Обслуживание", "Управление").
-        """
-        pass
+    @id.setter
+    def id(self, value: str):
+        """Устанавливает id, проверяя, что оно не пустое."""
+        if not value or not str(value).strip():
+            raise argument_exceptions("value"," ID сотрудника не может быть пустым")
+        self.__id = str(value).strip()
+    
