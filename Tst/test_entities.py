@@ -10,36 +10,38 @@ class dummy_entity(abstract_class):
     """
     Фиктивная сущность для тестирования абстрактного класса.
     """
+    pass
 
-def test_abstract_model_id_not_null():
-    """
-    Проверяет, что при создании сущности ей присваивается непустой идентификатор.
-    """
-    entity = dummy_entity()
-    assert entity.id != ""
-    assert isinstance(entity.id, str)
-
-
-def test_abstract_model_id_is_unique():
-    """
-    Проверяет, что каждая новая сущность получает уникальный идентификатор.
-    """
-    entity1 = dummy_entity()
-    entity2 = dummy_entity()
-    assert entity1.id != entity2.id
+class test_entities:
+    def test_success_init_abstract_class_not_null_id(self):
+        """
+        Проверяет, что при создании сущности ей присваивается непустой идентификатор.
+        """
+        entity = dummy_entity()
+        assert entity.id != ""
+        assert isinstance(entity.id, str)
 
 
-def test_abstract_model_name_is_not_null():
-    """
-    Проверяет, что попытка установить пустое имя вызывает исключение argument_exceptions.
-    """
-    entity = dummy_entity()
-    with pytest.raises(argument_exceptions):
-        entity.name = " "
+    def test_success_generate_id_abstract_class_unique_instances(self):
+        """
+        Проверяет, что каждая новая сущность получает уникальный идентификатор.
+        """
+        entity1 = dummy_entity()
+        entity2 = dummy_entity()
+        assert entity1.id != entity2.id
 
 
-def test_start():
-    """
-    Базовый тест-заглушка для проверки работоспособности окружения pytest.
-    """
-    assert 1 == 1
+    def test_raises_exception_set_name_abstract_class_empty_string(self):
+        """
+        Проверяет, что попытка установить пустое имя вызывает исключение argument_exceptions.
+        """
+        entity = dummy_entity()
+        with pytest.raises(argument_exceptions):
+            entity.name = " "
+
+
+    def test_success_start_test_environment_basic_check(self):
+        """
+        Базовый тест-заглушка для проверки работоспособности окружения pytest.
+        """
+        assert 1 == 1

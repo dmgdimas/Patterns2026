@@ -14,7 +14,7 @@ class range_model(entity_model):
         super().__init__()
         self.name = name
         self.conversion_factor = conversion_factor
-        self.base_range = base_range if base_range is not None else self
+        self.base_range = base_range
     @property
     def name(self) -> str:
         """Возвращает наименование единицы измерения."""
@@ -47,8 +47,8 @@ class range_model(entity_model):
     @base_range.setter
     def base_range(self, value: 'range_model') -> None:
         """Устанавливает базовую единицу измерения."""
-        if not isinstance(value, range_model):
-            raise argument_exceptions("Базовая единица должна быть экземпляром range_model")
+        if value is not None and not isinstance(value, range_model):
+            raise argument_exceptions("Базовая единица должна быть экземпляром range_model или None")
         self.__base_range = value
 
     def convert_to_base(self, quantity: float) -> float:
